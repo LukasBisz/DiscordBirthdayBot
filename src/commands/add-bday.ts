@@ -21,8 +21,8 @@ export function addBirthday(interaction: ChatInputCommandInteraction<CacheType>)
       .setLabel("What's your Name?")
       .setPlaceholder("(Optional)");
 
-    const discordUserIdInput = new TextInputBuilder()
-      .setCustomId("discordUserIdInput")
+    const birthdayIdInput = new TextInputBuilder()
+      .setCustomId("birthdayIdInput")
       .setRequired(true)
       .setStyle(TextInputStyle.Short)
       .setMinLength(16)
@@ -34,9 +34,9 @@ export function addBirthday(interaction: ChatInputCommandInteraction<CacheType>)
       .setRequired(true)
       .setStyle(TextInputStyle.Short)
       .setMinLength(3)
-      .setMaxLength(10)
+      .setMaxLength(5)
       .setLabel("What's your Birthday?")
-      .setPlaceholder("DD/MM/YYYY");
+      .setPlaceholder("DD.MM");
 
     const firstActionRow =
       new ActionRowBuilder<TextInputBuilder>().addComponents(nameInput);
@@ -44,7 +44,7 @@ export function addBirthday(interaction: ChatInputCommandInteraction<CacheType>)
 
     const secondActionRow =
       new ActionRowBuilder<TextInputBuilder>().addComponents(
-        discordUserIdInput
+        birthdayIdInput
       );
     modal.addComponents(secondActionRow);
 
