@@ -1,12 +1,9 @@
-import {
-  Client,
-  IntentsBitField,
-  REST,
-} from "discord.js";
+import { Client, IntentsBitField, REST } from "discord.js";
 import { config } from "./config";
 import { registerCommands } from "./register-commands";
 import { addBirthday } from "./commands/add-bday";
 import { addBdayInteraction } from "./interactions/add-bday-interaction";
+import { connectToDatabase } from "./database/sequelize-config";
 
 const client = new Client({
   intents: [
@@ -18,6 +15,7 @@ const client = new Client({
 });
 
 client.on("ready", async (c) => {
+  await connectToDatabase()
   await registerCommands();
   console.log(`${c.user.username} is online! 🤖`);
 });
