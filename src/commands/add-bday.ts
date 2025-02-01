@@ -33,7 +33,6 @@ export function addBirthday(interaction: ChatInputCommandInteraction<CacheType>)
       .setCustomId("dateInput")
       .setRequired(true)
       .setStyle(TextInputStyle.Short)
-      .setMinLength(3)
       .setMaxLength(5)
       .setLabel("What's your Birthday?")
       .setPlaceholder("DD.MM");

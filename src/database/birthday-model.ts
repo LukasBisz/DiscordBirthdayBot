@@ -2,7 +2,7 @@ import { CreationOptional } from "sequelize";
 import { Model, Column, Table, DataType } from "sequelize-typescript";
 
 @Table({
-  tableName: "birthday",
+  tableName: "birthdays",
   timestamps: false,
 })
 export class birthday extends Model {
@@ -14,10 +14,10 @@ export class birthday extends Model {
   name!: string;
 
   @Column({
-    type: DataType.BIGINT,
+    type: DataType.STRING,
     allowNull: false,
   })
-  birthdayId!: number;
+  birthdayUserId!: string;
 
   @Column({
     type: DataType.DATEONLY,
@@ -29,5 +29,5 @@ export class birthday extends Model {
     type: DataType.BIGINT,
     allowNull: false,
   })
-  senderId!: number;
+  addedById!: number;
 }
