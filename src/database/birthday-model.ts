@@ -20,14 +20,25 @@ export class birthday extends Model {
   birthdayUserId!: string;
 
   @Column({
-    type: DataType.DATEONLY,
+    type: DataType.STRING,
     allowNull: false,
   })
-  date!: Date;
+  birthdate!: string;
 
   @Column({
-    type: DataType.BIGINT,
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  birthYear!: number;
+
+  @Column({
+    type: DataType.STRING,
     allowNull: false,
   })
-  addedById!: number;
+  addedById!: string;
+
+  @Column({
+    type: DataType.DATEONLY,
+  })
+  lastDisplayedAt!: Date;
 }

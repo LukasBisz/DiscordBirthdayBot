@@ -2,6 +2,7 @@ import { ModalSubmitInteraction } from "discord.js";
 import { regexPatterns } from "../config";
 import { birthday } from "../database/birthday-model";
 import { DateTime } from "luxon";
+import { checkForBday } from "../check-for-bday";
 
 export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
   if (interaction.customId === "add-birthday") {
@@ -11,10 +12,11 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
       interaction.fields.getTextInputValue("birthdayIdInput");
 
     const dateInput = interaction.fields.getTextInputValue("dateInput");
+    const formatedDate = DateTime.now().toFormat("MM.dd");
 
-    const formatedDate = DateTime.fromFormat(dateInput, "dd.MM").toJSDate();
+    const yearInput = interaction.fields.getTextInputValue("yearInput")
 
-    const addedByIdInput = +interaction.user.id;
+    const addedByIdInput = interaction.user.id;
 
     if (isNaN(+birthdayUserIdInput)) {
       await interaction.reply({
@@ -31,7 +33,7 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
 
     if (existingBirthdayUserId) {
       await interaction.reply({
-        content: "The provided Discord ID was already added to the Bot",
+        content: "The provided Discord User ID was already added to the Bot",
         ephemeral: true,
       });
       return;
@@ -58,7 +60,16 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     if (!regexPatterns.date.test(dateInput)) {
       await interaction.reply({
         content:
-          "There was an error with your Date input; please follow the example.",
+          "There was an error with your birthdate input; please follow the example.",
+        ephemeral: true,
+      });
+      return;
+    }
+
+    if (!regexPatterns.year.test(yearInput)) {
+      await interaction.reply({
+        content:
+          "There was an error with your birth year input; please follow the example.",
         ephemeral: true,
       });
       return;
@@ -67,7 +78,8 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     const insert = new birthday({
       name: nameInput,
       birthdayUserId: birthdayUserIdInput,
-      date: formatedDate,
+      birthdate: formatedDate,
+      birthYear: yearInput,
       addedById: addedByIdInput,
     });
     insert.save();
@@ -76,5 +88,6 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
       content: "Your submission was received sucessfully!",
       ephemeral: true,
     });
+    checkForBday();
   }
 }
