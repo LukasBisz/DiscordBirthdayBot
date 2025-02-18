@@ -4,7 +4,11 @@ import { config } from "./config";
 const commands = [
   {
     name: "add-birthday",
-    description: "Adds Birthday to bot",
+    description: "Adds a Birthday to the bot",
+  },
+  {
+    name: "remove-birthday",
+    description: "Removes Birthday from the bot",
   },
 ];
 
