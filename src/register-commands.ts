@@ -17,7 +17,10 @@ export async function registerCommands() {
 
   console.log("Registering (/) commands...");
   await rest.put(
-    Routes.applicationGuildCommands(config.DISCORD_CLIENT_ID, config.GUILD_ID),
+    Routes.applicationGuildCommands(
+      config.DISCORD_BOT_CLIENT_ID,
+      config.GUILD_ID
+    ),
     { body: commands }
   );
   console.log("(/) commands were registered successfully!");

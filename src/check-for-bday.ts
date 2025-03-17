@@ -29,7 +29,7 @@ export async function checkForBday() {
       }
 
       const user = await client.users.fetch(birthdayRecord.birthdayUserId);
-      const bot = await client.users.fetch(config.DISCORD_CLIENT_ID);
+      const bot = await client.users.fetch(config.DISCORD_BOT_CLIENT_ID);
 
       const birthdayEmebed = new EmbedBuilder()
         .setTitle(`**Happy Birthday**`)
