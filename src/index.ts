@@ -1,11 +1,15 @@
 import { Client, IntentsBitField, REST } from "discord.js";
 import { config } from "./config";
 import { registerCommands } from "./register-commands";
-import { addBirthday } from "./commands/add-bday";
+import { addBday } from "./commands/add-bday";
 import { addBdayInteraction } from "./interactions/add-bday-interaction";
 import { connectToDatabase } from "./database/sequelize-config";
+import { checkForBday, cronJob } from "./check-for-bday";
+import { DateTime } from "luxon";
+import { removeBday } from "./commands/remove-bday";
+import { removeBdayInteraction } from "./interactions/remove-bday-interactions";
 
-const client = new Client({
+export const client = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
     IntentsBitField.Flags.GuildMembers,
@@ -14,18 +18,24 @@ const client = new Client({
   ],
 });
 
+export const channelId = config.CHANNEL_ID;
+
 client.on("ready", async (c) => {
-  await connectToDatabase()
+  await connectToDatabase();
   await registerCommands();
+  cronJob.start();
+  console.log(`⏰ Cronjob has been started at ${DateTime.now().toJSDate()}`);
   console.log(`${c.user.username} is online! 🤖`);
 });
 
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isChatInputCommand()) {
-    addBirthday(interaction);
+    addBday(interaction);
+    removeBday(interaction);
   }
   if (interaction.isModalSubmit()) {
     addBdayInteraction(interaction);
+    removeBdayInteraction(interaction);
   }
 });
 

@@ -14,9 +14,11 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     const dateInput = interaction.fields.getTextInputValue("dateInput");
     const formatedDate = DateTime.now().toFormat("MM.dd");
 
-    const yearInput = interaction.fields.getTextInputValue("yearInput")
+    const yearInput = interaction.fields.getTextInputValue("yearInput");
 
     const addedByIdInput = interaction.user.id;
+
+    console.log(yearInput);
 
     if (isNaN(+birthdayUserIdInput)) {
       await interaction.reply({
@@ -66,13 +68,16 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
       return;
     }
 
-    if (!regexPatterns.year.test(yearInput)) {
-      await interaction.reply({
-        content:
-          "There was an error with your birth year input; please follow the example.",
-        ephemeral: true,
-      });
-      return;
+    if (yearInput === "") {
+    } else {
+      if (!regexPatterns.year.test(yearInput)) {
+        await interaction.reply({
+          content:
+            "There was an error with your birth year input; please follow the example.",
+          ephemeral: true,
+        });
+        return;
+      }
     }
 
     const insert = new birthday({

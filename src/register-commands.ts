@@ -4,7 +4,11 @@ import { config } from "./config";
 const commands = [
   {
     name: "add-birthday",
-    description: "Adds Birthday to bot",
+    description: "Adds a Birthday to the bot",
+  },
+  {
+    name: "remove-birthday",
+    description: "Removes Birthday from the bot",
   },
 ];
 
@@ -13,7 +17,10 @@ export async function registerCommands() {
 
   console.log("Registering (/) commands...");
   await rest.put(
-    Routes.applicationGuildCommands(config.DISCORD_CLIENT_ID, config.GUILD_ID),
+    Routes.applicationGuildCommands(
+      config.DISCORD_BOT_CLIENT_ID,
+      config.GUILD_ID
+    ),
     { body: commands }
   );
   console.log("(/) commands were registered successfully!");
