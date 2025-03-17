@@ -4,10 +4,11 @@ A friendly and fun Discord bot that reminds your server about members' birthdays
 
 ## 🚀 Features
 
--   Easily add and remove birthdays using simple commands through a popup menu.
+-   Easily add and remove birthdays using simple commands through a popup menu:
 ![Discord_Rg3FsEOhtK](https://github.com/user-attachments/assets/3bf09ea3-9aee-46f9-a1d4-5e5fd06e7be8)
--   Automatic birthday notifications in a designated channel
-![Discord_mygJehbg1T](https://github.com/user-attachments/assets/69028074-f7bc-45be-b40c-633290eebd82)
+-   Automatic birthday notifications in a designated channel:
+![Discord_XOz4dqzjMm](https://github.com/user-attachments/assets/44d70b6b-2e80-4eab-a814-7a5eeed657ea)
+
 
 
 ## 🔧 Installation
@@ -16,6 +17,7 @@ A friendly and fun Discord bot that reminds your server about members' birthdays
 ### Requirements
 
 -   [Node.js](https://nodejs.org/) (v16 or higher)
+-   [ts-node](https://www.npmjs.com/package/ts-node) for running TypeScript files
 -   [Discord.js](https://discord.js.org/) (v14)
 -   SQLite database for storing birthdays
 
@@ -39,11 +41,12 @@ A friendly and fun Discord bot that reminds your server about members' birthdays
     ```env
     DISCORD_TOKEN=your-bot-token-here
     DISCORD_BOT_CLIENT_ID=your-bot-discord-id
-    GUILD_ID=your-server-id-here![Discord_mygJehbg1T](https://github.com/user-attachments/assets/7928670b-2dda-4456-99f6-190015a5bc2b)
+    GUILD_ID=your-server-id-here
     CHANNEL_ID=birthday-announcement-channel-id
     ```
+    Note: To find your CHANNEL_ID, enable Developer Mode in Discord's settings (User Settings > Advanced > Developer Mode). Right-click on the channel where you want the birthday announcements to appear and click "Copy ID."
     
-4.  **Run the Bot**
+5.  **Run the Bot**
     
     ```sh
     npm start
