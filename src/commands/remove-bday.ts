@@ -31,7 +31,9 @@ export async function removeBday(
       .setPlaceholder("e.g. 1247578731678138399");
 
     const firstActionRow =
-      new ActionRowBuilder<TextInputBuilder>().addComponents(removeBirthdayIdInput);
+      new ActionRowBuilder<TextInputBuilder>().addComponents(
+        removeBirthdayIdInput
+      );
     modal.addComponents(firstActionRow);
 
     interaction.showModal(modal);

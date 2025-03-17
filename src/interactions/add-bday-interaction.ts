@@ -18,8 +18,6 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
 
     const addedByIdInput = interaction.user.id;
 
-    console.log(yearInput);
-
     if (isNaN(+birthdayUserIdInput)) {
       await interaction.reply({
         content:
