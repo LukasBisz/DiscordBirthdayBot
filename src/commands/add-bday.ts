@@ -22,14 +22,6 @@ export async function addBday(
       .setCustomId("add-birthday")
       .setTitle("Add your Birthday to the Bot");
 
-    const nameInput = new TextInputBuilder()
-      .setCustomId("nameInput")
-      .setRequired(false)
-      .setStyle(TextInputStyle.Short)
-      .setMaxLength(15)
-      .setLabel("What's your Name?")
-      .setPlaceholder("(Optional)");
-
     const birthdayIdInput = new TextInputBuilder()
       .setCustomId("birthdayIdInput")
       .setRequired(true)
@@ -55,20 +47,16 @@ export async function addBday(
       .setPlaceholder("(Optional)");
 
     const firstActionRow =
-      new ActionRowBuilder<TextInputBuilder>().addComponents(nameInput);
+      new ActionRowBuilder<TextInputBuilder>().addComponents(birthdayIdInput);
     modal.addComponents(firstActionRow);
 
     const secondActionRow =
-      new ActionRowBuilder<TextInputBuilder>().addComponents(birthdayIdInput);
+      new ActionRowBuilder<TextInputBuilder>().addComponents(dateInput);
     modal.addComponents(secondActionRow);
 
     const thirdActionRow =
-      new ActionRowBuilder<TextInputBuilder>().addComponents(dateInput);
-    modal.addComponents(thirdActionRow);
-
-    const fourthActionRow =
       new ActionRowBuilder<TextInputBuilder>().addComponents(yearInput);
-    modal.addComponents(fourthActionRow);
+    modal.addComponents(thirdActionRow);
 
     interaction.showModal(modal);
   }

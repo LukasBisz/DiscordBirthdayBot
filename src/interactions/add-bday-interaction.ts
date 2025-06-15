@@ -6,8 +6,6 @@ import { checkForBday } from "../check-for-bday";
 
 export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
   if (interaction.customId === "add-birthday") {
-    const nameInput = interaction.fields.getTextInputValue("nameInput");
-
     const birthdayUserIdInput =
       interaction.fields.getTextInputValue("birthdayIdInput");
 
@@ -17,8 +15,6 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     const yearInput = interaction.fields.getTextInputValue("yearInput");
 
     const addedByIdInput = interaction.user.id;
-
-    console.log(yearInput);
 
     if (isNaN(+birthdayUserIdInput)) {
       await interaction.reply({
@@ -36,15 +32,6 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     if (existingBirthdayUserId) {
       await interaction.reply({
         content: "The provided Discord User ID was already added to the Bot",
-        ephemeral: true,
-      });
-      return;
-    }
-
-    if (!regexPatterns.text.test(nameInput)) {
-      await interaction.reply({
-        content:
-          "There was an error with your Name input; please use letters only.",
         ephemeral: true,
       });
       return;
@@ -81,7 +68,6 @@ export async function addBdayInteraction(interaction: ModalSubmitInteraction) {
     }
 
     const insert = new birthday({
-      name: nameInput,
       birthdayUserId: birthdayUserIdInput,
       birthdate: formatedDate,
       birthYear: yearInput,
