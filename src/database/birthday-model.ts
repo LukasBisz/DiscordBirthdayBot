@@ -10,11 +10,6 @@ export class birthday extends Model {
 
   @Column({
     type: DataType.STRING,
-  })
-  name!: string;
-
-  @Column({
-    type: DataType.STRING,
     allowNull: false,
   })
   birthdayUserId!: string;
