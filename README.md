@@ -5,7 +5,7 @@ A friendly and fun Discord bot that reminds your server about members' birthdays
 ## 🚀 Features
 
 -   Easily add and remove birthdays using simple commands through a popup menu:
-![Discord_Rg3FsEOhtK](https://github.com/user-attachments/assets/3bf09ea3-9aee-46f9-a1d4-5e5fd06e7be8)
+![Discord_hLqHy4RbaT](https://github.com/user-attachments/assets/471abb8c-b492-4980-a21a-a58b26e550ae)
 -   Automatic birthday notifications in a designated channel:
 ![Discord_XOz4dqzjMm](https://github.com/user-attachments/assets/44d70b6b-2e80-4eab-a814-7a5eeed657ea)
 
