@@ -31,7 +31,7 @@ export async function checkForBday() {
       const user = await client.users.fetch(birthdayRecord.birthdayUserId);
       const bot = await client.users.fetch(config.DISCORD_BOT_CLIENT_ID);
 
-      const birthdayEmebed = new EmbedBuilder()
+      const birthdayEmbed = new EmbedBuilder()
         .setTitle(`**Happy Birthday**`)
         .setColor(0xff6347)
         .setThumbnail(`${user.displayAvatarURL({ size: 512 })}`)
@@ -51,7 +51,7 @@ export async function checkForBday() {
         .setTimestamp();
 
       if (channel && channel.isTextBased()) {
-        channel.send({ embeds: [birthdayEmebed] }).then((embedMessage) => {
+        channel.send({ embeds: [birthdayEmbed] }).then((embedMessage) => {
           embedMessage.react("🎉");
         });
       }
